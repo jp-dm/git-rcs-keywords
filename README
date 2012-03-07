@@ -20,17 +20,15 @@ To start, you need to add the following to ~/.gitconfig:
 [filter "rcs-keywords"]
 	clean  = .git_filters/rcs-keywords.clean
 	smudge = .git_filters/rcs-keywords.smudge %f
-[filter "none"]
-	clean  = cat
-	smudge = cat
 
 Then, to add keyword expansion, simply add these files to your project:
-    <project>/.gitattributes                    - rcs-keywords.* filter=none
-						  *.c filter=rcs-keywords
+    <project>/.gitattributes                    - *.c filter=rcs-keywords
     <project>/.git_filters/rcs-keywords.smudge  - copy this file to project
     <project>/.git_filters/rcs-keywords.clean   - copy companion to project
 
-Note that without the 'none' filter for the rcs-keywords.* files, if you modify the files, you're basically screwed
-
 Note: This feature is known not to work in git 1.6.2.2 and 1.7.3.*, and 
       verified to work in git 1.7.4.4 and 1.7.4.msysgit.0
+
+If you use this extensively (In multiple projects/repos, for example),
+the author suggests placing the filter files in /usr/local/share/git_filters
+or similar and replacing that path in the filter settings.

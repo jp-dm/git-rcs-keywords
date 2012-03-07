@@ -7,12 +7,14 @@
 # Copyright (c) 2009-2011 Turon Technologies, Inc.  All rights reserved.
 # Copyright (c) 2012 Fair Warning, Inc.
 
-s/\$Id[^\$]*\$/\$Id\$/; 
-s/\$Date[^\$]*\$/\$Date\$/;
-s/\$Author[^\$]*\$/\$Author\$/; 
-s/\$Source[^\$]*\$/\$Source\$/; 
-s/\$File[^\$]*\$/\$File\$/; 
-s/\$Revision[^\$]*\$/\$Revision\$/;
-s/\$Header[^\$]*\$/\$Header\$/;
-s/\$Commit[^\$]*\$/\$Commit\$/;
-s/\$Name[^\$]*\$/\$Name\$/;
+s/\$(
+   Id
+ | Date
+ | Author
+ | Source
+ | File
+ | Revision
+ | Header
+ | Commit
+ | Name
+  )[^\$]*\$/\$$1\$/x;

@@ -7,10 +7,8 @@
 # Usage:
 #    .git_filter/rcs-keywords.smudge file_path < file_contents
 #
-# Note that you need to have the 'none' filter in place, otherwise that will garble these filter files!
 # 
 # To add keyword expansion:
-#    <project>/.gitattributes                    - rcs-keywords* filter=none
 #    <project>/.gitattributes                    - *.c filter=rcs-keywords
 #    <project>/.git_filters/rcs-keywords.smudge  - copy this file to project
 #    <project>/.git_filters/rcs-keywords.clean   - copy companion to project
@@ -19,9 +17,6 @@
 # [filter "rcs-keywords"]
 #	clean  = .git_filters/rcs-keywords.clean
 #	smudge = .git_filters/rcs-keywords.smudge %f
-# [filter "none"]
-#	clean  = cat
-#	smudge = cat
 #
 # Copyright (c) 2009-2011 Turon Technologies, Inc.  All rights reserved.
 # Copyright (c) 2012 Fair Warning, Inc.
@@ -51,15 +46,15 @@ $com =~ /^commit (.*)$/m;
 $commit = $1;
 
 while (<STDIN>) {
-    s/\$Date[^\$]*\$/\$Date:   $date \$/;
-    s/\$Author[^\$]*\$/\$Author: $author \$/;
-    s/\$Id[^\$]*\$/\$Id: $filename | $date | $name \$/;
-    s/\$File[^\$]*\$/\$File:   $filename \$/;
-    s/\$Source[^\$]*\$/\$Source: $path \$/;
-    s/\$Revision[^\$]*\$/\$Revision: $ident \$/;
-    s/\$Header[^\$]*\$/\$Header: $path $ident $date $name \$/;
-    s/\$Commit[^\$]*\$/\$Commit: $commit \$/;
-    s/\$Name[^\$]*\$/\$Name: $tag \$/;
+    s/\$(Date)[^\$]*\$/\$$1:   $date \$/;
+    s/\$(Author)[^\$]*\$/\$$1: $author \$/;
+    s/\$(Id)[^\$]*\$/\$$1: $filename | $date | $name \$/;
+    s/\$(File)[^\$]*\$/\$$1:   $filename \$/;
+    s/\$(Source)[^\$]*\$/\$$1: $path \$/;
+    s/\$(Revision)[^\$]*\$/\$$1: $ident \$/;
+    s/\$(Header)[^\$]*\$/\$$1: $path $ident $date $name \$/;
+    s/\$(Commit)[^\$]*\$/\$$1: $commit \$/;
+    s/\$(Name)[^\$]*\$/\$$1: $tag \$/;
 } continue {
     print or die "-p destination: $!\n";
 }
