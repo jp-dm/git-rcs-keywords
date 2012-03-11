@@ -15,7 +15,7 @@ if [ $EUID = 0 ]; then
 fi
 
 if [ ! -r /usr/local/share/git_filters/rcs-keywords.clean ]; then
-    if [ $EUID = 0 ];
+    if [ $EUID = 0 ]; then
 	echo "Oops, something went terribly wrong in installing the filters"
     else
 	echo "Oops, filters not installed in global directory. Please run as root to install"
