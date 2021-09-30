@@ -24,8 +24,6 @@ fi
 
 git config --global filter.rcs-keywords.clean \
     "/usr/local/share/git_filters/rcs-keywords.clean" && \
-git config --global filter.rcs-keywords.clean \
-    "/usr/local/share/git_filters/rcs-keywords.clean" && \
 echo "Filters configured. Note that you still need to
 enable keyword filtering in your project. Please see
 README for more information."
